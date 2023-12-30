@@ -94,3 +94,15 @@ input {
   font-size: 0.8rem;
   cursor: pointer;
 }
+input[type="checkbox"] {
+  height: 1rem;
+  width: 1rem;
+  accent-color: #e5771f;
+}
+.stats {
+  background-color: #76c7ad;
+  text-align: center;
+  font-weight: 700;
+  padding: 2rem 0;
+  font-size: 22px;
+}
