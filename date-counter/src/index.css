@@ -1,0 +1,47 @@
+.body{
+  font-size: 30px;
+  font-family: sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-top: 10%;
+  margin-left: 3%;
+  border: 10px solid gray;
+  width: 90%;
+  background-color: #ffe4c469
+
+}
+.count{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+.step {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+.btn{
+  box-shadow: 1px 1px;
+  font-weight: 600;
+  font-size: 18px;
+}
+.btn:hover{
+  cursor: pointer;
+  
+}
+.message{
+      font-weight: 600;
+        color: #2aa55ccc;
+       
+}
