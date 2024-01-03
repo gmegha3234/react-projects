@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  
+  color: #495057;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app{
+margin-top: 5vw;
+display: grid;
+grid-template-columns:repeat(2, minmax(0, 400px));
+grid-gap: 20px 100px;
+width: 80vw;
+/* align-items: center; */
+justify-content: space-around;
+}
+.sidebar li{
+  display: flex;
+  padding: 1rem;
+  column-gap: 7px;
+}
+.sidebar .detail {
+  /* padding: 9px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+.sidebar .detail p{
+  font-weight: 600;
+}
+.sidebar img{
+  border-radius: 35px;
+}
+.sidebar li button{
+    width: 73px;
+    background-color: orange;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px darkgray;
+    margin-left: auto ;
+  font-weight:bold ;
+}
+ .btn{
+  width: 117px;
+  height: 34px;
+  margin-top: 20px;
+  float: right;
+  background-color: orange;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px darkgray;
+  font-weight: bold;
+}
+.red{
+  color: red;
+  
+}
+.green {
+  color: green;
+}
+.form-add-friend,.form-split-bill{
+  display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    row-gap: 20px;
+    align-content: space-between;
+    /* align-self: center; */
+    padding: 10px 20px;
+    background-color: #ffae0052;
+    border-radius: 2%;
+    font-weight: bold;
+}
+ .submit-btn{
+  margin-left: auto;
+}
+.inputData{
+  display: flex;
+  justify-content: space-between;
+}
+input{
+  padding: 0px 1px;
+  border: none;
+}
+select{
+  width: 100px;
+  border: none;
+  padding: 0px 1px;
+  text-align: center;
+}
