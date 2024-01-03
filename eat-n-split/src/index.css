@@ -23,6 +23,7 @@ justify-content: space-around;
   display: flex;
   padding: 1rem;
   column-gap: 7px;
+
 }
 .sidebar .detail {
   /* padding: 9px; */
@@ -45,7 +46,8 @@ justify-content: space-around;
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px darkgray;
     margin-left: auto ;
-  font-weight:bold ;
+   font-weight:bold ;
+    cursor: pointer;
 }
  .btn{
   width: 117px;
@@ -57,6 +59,8 @@ justify-content: space-around;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px darkgray;
   font-weight: bold;
+  margin-left: auto;
+  cursor: pointer;
 }
 .red{
   color: red;
@@ -76,21 +80,32 @@ justify-content: space-around;
     background-color: #ffae0052;
     border-radius: 2%;
     font-weight: bold;
-}
- .submit-btn{
-  margin-left: auto;
+    
 }
 .inputData{
   display: flex;
   justify-content: space-between;
+
 }
 input{
   padding: 0px 1px;
   border: none;
+  text-align:center;
 }
 select{
   width: 100px;
   border: none;
   padding: 0px 1px;
   text-align: center;
+}
+.sidebar{
+display: flex;
+flex-direction: column;
+row-gap: 20px;
+}
+.selected-list{
+  background-color:#ffaa0057;
+}
+.sidebar li:hover{
+background-color: #ffaa0021;
 }
