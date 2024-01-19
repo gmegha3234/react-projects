@@ -1,20 +1,12 @@
-function Navbar() {
+/* eslint-disable react/prop-types */
+import { Logo } from "./Logo";
+function Navbar({children}) {
   return (
     <nav className="nav-bar">
-      <div className="logo">
-        <h1>
-          {" "}
-          <span>🍿</span>
-           movieTime
-        </h1>
-      </div>
-      <div className="search-box">
-        <input type="text" placeholder="Search movies"/>
-      </div>
-      <div className="result-count">
-        <p>Found 3 results</p>
-      </div>
+      <Logo />
+      {children}
     </nav>
   );
 }
 export default Navbar;
+

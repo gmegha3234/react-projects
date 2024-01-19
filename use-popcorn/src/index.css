@@ -80,6 +80,10 @@ li img{
     justify-content: space-between;
     
 }
+.ratings p{
+    display: flex;
+    justify-content: space-evenly;
+}
 .rating-list{
    justify-content: flex-start;
    column-gap: 10px;
@@ -95,4 +99,5 @@ li img{
     font-weight: 600;
     background: #b37923;
     border-radius: 24%;
+    cursor: pointer;
 }

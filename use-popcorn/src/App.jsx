@@ -1,6 +1,17 @@
 import Navbar from "./components/Navbar";
-import MainContent from "./components/Main-content";
-const tempMovieData = [
+import MainContent from "./components/Main";
+import { Search } from "./components/Search";
+import { NumResults } from "./components/NumResults";
+import Main from "./components/Main";
+import { useState } from "react";
+import Box from "./components/Box";
+import MovieList from "./components/MovieList";
+import Overlay from "./components/Overlay";
+import Modal from "./components/Modal";
+import WatchedSummary from "./components/WatchedSummary";
+import WatchedMoviesList from "./components/WatchedMoviesList";
+import StarRating from "./components/StarRating";
+const movieListData = [
   {
     imdbID: "tt1375666",
     Title: "Inception",
@@ -23,12 +34,69 @@ const tempMovieData = [
       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
   },
 ];
-function App(){
-    return (
-      <>
-        <Navbar></Navbar>
-        <MainContent tempMovieData={tempMovieData}></MainContent>
-      </>
-    );
+
+const movieWatchedData = [
+  {
+    imdbID: "tt1375666",
+    Title: "Inception",
+    Year: "2010",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
+    runtime: 148,
+    imdbRating: 8.8,
+    userRating: 10,
+  },
+  {
+    imdbID: "tt0088763",
+    Title: "Back to the Future",
+    Year: "1985",
+    Poster:
+      "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    runtime: 116,
+    imdbRating: 8.5,
+    userRating: 9,
+  },
+];
+function App() {
+  const [movies, setMovies] = useState(movieListData);
+  const [watched, setWatched] = useState(movieWatchedData);
+  const [modal, setModal] = useState(false);
+  return (
+    // <>
+    //   <Navbar></Navbar>
+    //   <MainContent
+    //     movieListData={movieListData}
+    //     movieWatchedData={movieWatchedData}
+    //   ></MainContent>
+    // </>
+
+    <>
+      <Navbar>
+        <Search></Search>
+        <NumResults movies={movies}></NumResults>
+      </Navbar>
+      <Main>
+        {/* Passing element as children  */}
+        <Box>
+          <MovieList movies={movies}></MovieList>
+        </Box>
+        {/* Passing element as prop */}
+        {/* <Box element={<MovieList movies={movies}></MovieList>}></Box>
+           
+            */}
+        <Box>
+          <WatchedSummary watched={watched}></WatchedSummary>
+          <WatchedMoviesList watched={watched}></WatchedMoviesList>
+          <StarRating maxRating={10}/>
+        </Box>
+      </Main>
+      {/* <button onClick={() => setModal(true)}>OPEN</button> */}
+      {/* {modal && (
+        <Overlay clickHandler={() => setModal(false)}>
+          <Modal />
+        </Overlay>
+      )} */}
+    </>
+  );
 }
 export default App;
