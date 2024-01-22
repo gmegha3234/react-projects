@@ -87,7 +87,16 @@ function App() {
         <Box>
           <WatchedSummary watched={watched}></WatchedSummary>
           <WatchedMoviesList watched={watched}></WatchedMoviesList>
-          <StarRating maxRating={10}/>
+          <StarRating
+            maxRating={5}
+            color={"red"}
+            size={22}
+            className="test"
+            messages={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
+            defaultRating={3}
+          />
+          <StarRating />
+          <Test/>
         </Box>
       </Main>
       {/* <button onClick={() => setModal(true)}>OPEN</button> */}
@@ -100,3 +109,10 @@ function App() {
   );
 }
 export default App;
+function Test(){
+  const [movieRating,setMovieRating]= useState(0)
+  return <div>
+    <StarRating color="blue" onSetRating={setMovieRating}></StarRating>
+    <p>This movie was rated {movieRating} stars</p>
+  </div>
+}
