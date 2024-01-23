@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import Navbar from "./components/Navbar";
 import MainContent from "./components/Main";
 import { Search } from "./components/Search";
 import { NumResults } from "./components/NumResults";
 import Main from "./components/Main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "./components/Box";
 import MovieList from "./components/MovieList";
 import Overlay from "./components/Overlay";
@@ -11,6 +12,8 @@ import Modal from "./components/Modal";
 import WatchedSummary from "./components/WatchedSummary";
 import WatchedMoviesList from "./components/WatchedMoviesList";
 import StarRating from "./components/StarRating";
+import Loader from "./components/Loader";
+import MovieDetails from "./components/MovieDetails";
 const movieListData = [
   {
     imdbID: "tt1375666",
@@ -58,9 +61,56 @@ const movieWatchedData = [
   },
 ];
 function App() {
-  const [movies, setMovies] = useState(movieListData);
+  const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(movieWatchedData);
   const [modal, setModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [query, setQuery] = useState("inception");
+  const [selectedId, setSelectedId] = useState();
+  const KEY = "613ff202";
+  const tempQuery = "titanic";
+
+  useEffect(function(){
+     console.log("a");
+  },[]);
+
+  useEffect(function(){
+    console.log("b");
+  })
+  console.log("c");
+
+  useEffect(function () {
+    async function FetchMovies() {
+      try {
+        setIsLoading(true);
+        setError('');
+        const response = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
+        if (!response.ok) {
+          throw new Error("Something went wrong with fetching movies");
+        }
+
+        const data = await response.json();
+        if (data.Response == "False") throw new Error("Movie not found");
+        setMovies(data.Search);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err.message);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    if(query.length<3){
+      setMovies([]);
+      setError('');
+      return;
+    }
+    FetchMovies();
+  }, [query]);
+ 
   return (
     // <>
     //   <Navbar></Navbar>
@@ -72,22 +122,32 @@ function App() {
 
     <>
       <Navbar>
-        <Search></Search>
+        <Search query={query} setQuery={setQuery}></Search>
         <NumResults movies={movies}></NumResults>
       </Navbar>
       <Main>
         {/* Passing element as children  */}
         <Box>
-          <MovieList movies={movies}></MovieList>
+          {/* {isLoading ? <Loader /> : <MovieList movies={movies}></MovieList>} */}
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies}></MovieList>}
+          {error && <ErrorMessage message={error} />}
         </Box>
         {/* Passing element as prop */}
         {/* <Box element={<MovieList movies={movies}></MovieList>}></Box>
            
             */}
         <Box>
-          <WatchedSummary watched={watched}></WatchedSummary>
-          <WatchedMoviesList watched={watched}></WatchedMoviesList>
-          <StarRating
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <>
+              <WatchedSummary watched={watched}></WatchedSummary>
+              <WatchedMoviesList watched={watched}></WatchedMoviesList>
+            </>
+          )}
+
+          {/* <StarRating
             maxRating={5}
             color={"red"}
             size={22}
@@ -95,8 +155,8 @@ function App() {
             messages={["Terrible", "Bad", "Okay", "Good", "Amazing"]}
             defaultRating={3}
           />
-          <StarRating />
-          <Test/>
+          <StarRating /> */}
+          {/* <Test /> */}
         </Box>
       </Main>
       {/* <button onClick={() => setModal(true)}>OPEN</button> */}
@@ -109,10 +169,20 @@ function App() {
   );
 }
 export default App;
-function Test(){
-  const [movieRating,setMovieRating]= useState(0)
-  return <div>
-    <StarRating color="blue" onSetRating={setMovieRating}></StarRating>
-    <p>This movie was rated {movieRating} stars</p>
-  </div>
+function Test() {
+  const [movieRating, setMovieRating] = useState(0);
+  return (
+    <div>
+      <StarRating color="blue" onSetRating={setMovieRating}></StarRating>
+      <p>This movie was rated {movieRating} stars</p>
+    </div>
+  );
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p className="error">
+      <span>🙇‍♀️</span> {message}
+    </p>
+  );
 }

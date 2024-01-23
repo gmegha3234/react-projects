@@ -101,3 +101,14 @@ li img{
     border-radius: 24%;
     cursor: pointer;
 }
+.loader{
+    margin-top:2rem;
+    background-color : white;
+}
+.error{
+    margin-top:5rem;
+    font-size: 22px;
+    background-color: white;
+    border-radius: 2%;
+    font-weight: bold;
+}
