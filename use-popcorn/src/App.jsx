@@ -62,23 +62,24 @@ const movieWatchedData = [
 ];
 function App() {
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(movieWatchedData);
-  const [modal, setModal] = useState(false);
+  const [watched, setWatched] = useState([]);
+  // const [modal, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [query, setQuery] = useState("inception");
   const [selectedId, setSelectedId] = useState();
+  // const [movieWatchedAlready, setMovieWatchedAlready]=useState(false);
   const KEY = "613ff202";
   const tempQuery = "titanic";
 
-  useEffect(function(){
-     console.log("a");
-  },[]);
+  // useEffect(function(){
+  //    console.log("a");
+  // },[]);
 
-  useEffect(function(){
-    console.log("b");
-  })
-  console.log("c");
+  // useEffect(function(){
+  //   console.log("b");
+  // })
+  // console.log("c");
 
   useEffect(function () {
     async function FetchMovies() {
@@ -111,6 +112,30 @@ function App() {
     FetchMovies();
   }, [query]);
  
+  function handleSelectedMovie(id){
+    // const isFound = watched.some((element) => {
+    //   if (element.imdbID === id) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+    // isFound ? setMovieWatchedAlready(true) : setMovieWatchedAlready(false);
+    setSelectedId((selectedId)=>id===selectedId?null:id);
+  }
+  
+  function handleCloseMovie(){
+    setSelectedId();
+  }
+
+  function handleWatchMovie(movie){
+      
+      setWatched((watched)=>[...watched,movie])
+  }
+
+  function handleDeletedWatch(id){
+        setWatched((watched)=>watched.filter((movie)=>movie.imdbID!==id));
+  }
+
   return (
     // <>
     //   <Navbar></Navbar>
@@ -130,7 +155,13 @@ function App() {
         <Box>
           {/* {isLoading ? <Loader /> : <MovieList movies={movies}></MovieList>} */}
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies}></MovieList>}
+          {!isLoading && !error && (
+            <MovieList
+              movies={movies}
+              onSelectMovie={handleSelectedMovie}
+              selectedId={selectedId}
+            ></MovieList>
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
         {/* Passing element as prop */}
@@ -139,11 +170,20 @@ function App() {
             */}
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} />
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+              onMovieWatched={handleWatchMovie}
+              // movieWatchedAlready={movieWatchedAlready}
+              watched={watched}
+            />
           ) : (
             <>
               <WatchedSummary watched={watched}></WatchedSummary>
-              <WatchedMoviesList watched={watched}></WatchedMoviesList>
+              <WatchedMoviesList
+                watched={watched}
+                onDeleteWatch={handleDeletedWatch}
+              ></WatchedMoviesList>
             </>
           )}
 

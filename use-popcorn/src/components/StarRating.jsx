@@ -9,10 +9,11 @@ const containerStyle = {
   gap: "10px",
   flexDirection : "row"
 };
-const starContainer ={
-  display : "flex",
-  flexDirection : "row"
-}
+const starContainer = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+};
 
 StarRating.propTypes = {
   maxRating: PropTypes.number,
@@ -80,6 +81,7 @@ function Star({ onRate, full, onHoverIn, onHoverOut,color, size }) {
     height: `${size}px`,
     cursor: "pointer",
     display: "block",
+   
   };
   return (
     <span

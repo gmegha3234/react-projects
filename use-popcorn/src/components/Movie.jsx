@@ -1,7 +1,15 @@
 /* eslint-disable react/prop-types */
-const Movie = ({ movie }) => {
+const Movie = ({ movie, onSelectMovie ,selectedId}) => {
   return (
-    <li key={movie.imdbID}>
+    <li
+      className={
+        selectedId == movie.imdbID
+          ? "selected-movie movie-list-item"
+          : "movie-list-item"
+      }
+      key={movie.imdbID}
+      onClick={() => onSelectMovie(movie.imdbID)}
+    >
       <img src={movie.Poster} alt="" />
       <div className="description">
         <p>{movie.Title}</p>
