@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* div{
+ width: 50%;
+ margin: 20px auto ;
+ padding: 10px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+} */
+/* .converter{
+  width: 70%;
+  border: 1 px solid black;
+  border-radius: 2%;
+  background-color: gray;
+  height: 400px;
+  margin: 20px auto ;
+} */
+.container {
+  /* background: royalblue; */
+  height: 400px;
+  width: 100%;
+  position: relative;
+  margin: 20px auto;
+}
+
+.converter {
+  width: 70%;
+  /* background:#c6dbdb; */
+  height: 300px;
+  position: absolute;
+  top: 60%;
+  left: 20%;
+  margin: -50px 0 0 -50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 22px;
+  border-radius: 10px;
+  border: 4px dashed royalblue;
+}
+.result {
+ 
+  text-align: center;
+  height: 100px;
+  /* border: 1px solid rgb(138, 154, 154); */
+  font-size: 22px;
+  box-shadow: 1px 1px 4px 4px lightgray;
+  margin-left: auto;
+  background-color: royalblue;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+
+}
+.result p{
+  word-wrap: break-word;
+white-space: initial;
+overflow-wrap:break-word;
+}
+/* .result p {
+  padding: 10px;
+  /* width: 50%; */
+  /* margin: auto;
+  color: white;
+  font-weight: 600; */
+  /* margin: 10% auto; */
+ 
+.converter div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 10px;
+}
+input,
+select {
+  width: 250px;
+  height: 40px;
+  font-size: large;
+  text-align: center;
+  color: rgb(110, 92, 92);
+  border-radius: 5px;
+}
+h1 {
+  text-align: center;
+  padding-top: 5rem;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 
+@media (max-width: 480px) {
+           .converter  {
+             flex-direction: column;
+  
+             }
+        } */
+         
+        
+@media (min-width: 200px) and (max-width: 1200px) {
+            .converter  {
+ 
+  flex-direction: column;
+  
+}
+/* .result{
+   min-width: 200px;
+   width: fit-content;
+    word-wrap: break-word;
+} */
+        
+         
