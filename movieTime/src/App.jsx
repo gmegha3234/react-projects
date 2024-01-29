@@ -14,6 +14,9 @@ import WatchedMoviesList from "./components/WatchedMoviesList";
 import StarRating from "./components/StarRating";
 import Loader from "./components/Loader";
 import MovieDetails from "./components/MovieDetails";
+import { useMovies } from "./customhooks/useMovies";
+import { useLocalStorageState } from "./customhooks/useLocalStorageState";
+import { useGeoLocator } from "./customhooks/useGeoLocator";
 const movieListData = [
   {
     imdbID: "tt1375666",
@@ -61,17 +64,20 @@ const movieWatchedData = [
   },
 ];
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  // const [modal, setModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState();
   // const [movieWatchedAlready, setMovieWatchedAlready]=useState(false);
-  const KEY = "613ff202";
-  const tempQuery = "titanic";
-
+  
+  // const tempQuery = "titanic";
+  
+  // const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useLocalStorageState([],"watched");
+  // const [watched, setWatched] = useState(function(){
+  //   const storedValue= JSON.parse(localStorage.getItem('watched'));
+  //   return storedValue;
+  // });
+ 
   // useEffect(function(){
   //    console.log("a");
   // },[]);
@@ -81,47 +87,13 @@ function App() {
   // })
   // console.log("c");
 
-  useEffect(function () {
-    const controller = new AbortController();
-    async function FetchMovies() {
-      try {
-        setIsLoading(true);
-        setError('');
-        const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`, {signal : controller.signal}
-        );
-        if (!response.ok) {
-          throw new Error("Something went wrong with fetching movies");
-        }
+  const { movies, isLoading, error }= useMovies(query);
+  
+  // useEffect(function(){
+  //    localStorage.setItem("watched", JSON.stringify(watched));
 
-        const data = await response.json();
-        if (data.Response == "False") throw new Error("Movie not found");
-        setMovies(data.Search);
-        setIsLoading(false);
-        setError("");
-      } catch (err) {
-        console.log(err);
-        if(err.name !== 'AbortError'){
-            setError(err.message);
-        }
-       
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    if(query.length<3){
-      setMovies([]);
-      setError('');
-      return;
-    }
-    handleCloseMovie();
-    FetchMovies();
-
-    return function(){
-      controller.abort();
-    }
-  }, [query]);
- 
+  // },[watched])
+  useGeoLocator();
   function handleSelectedMovie(id){
     // const isFound = watched.some((element) => {
     //   if (element.imdbID === id) {
@@ -131,6 +103,7 @@ function App() {
     // });
     // isFound ? setMovieWatchedAlready(true) : setMovieWatchedAlready(false);
     setSelectedId((selectedId)=>id===selectedId?null:id);
+
   }
   
   function handleCloseMovie(){
@@ -139,8 +112,8 @@ function App() {
 
   function handleWatchMovie(movie){
       
-      setWatched((watched)=>[...watched,movie])
-  }
+      setWatched((watched)=>[...watched,movie]);
+       }
 
   function handleDeletedWatch(id){
         setWatched((watched)=>watched.filter((movie)=>movie.imdbID!==id));

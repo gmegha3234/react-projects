@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import StarRating from "./StarRating";
 import Loader from "./Loader";
+import { useKey } from "../customhooks/useKey";
 const KEY = "613ff202";
+const defaultImageUrl =
+  "https://w7.pngwing.com/pngs/116/765/png-transparent-clapperboard-computer-icons-film-movie-poster-angle-text-logo-thumbnail.png";
+
 /* eslint-disable react/prop-types */
 export default function MovieDetails({
   selectedId,
@@ -16,6 +20,10 @@ export default function MovieDetails({
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId
   )?.userRating;
+  const countRef = useRef(0);
+  useEffect(function(){
+    if(userRating) countRef.current = countRef.current+1;
+  },[userRating]);
   const {
     Actors: actors,
     Genre: genre,
@@ -29,20 +37,20 @@ export default function MovieDetails({
     imdbRating,
   } = movie;
 
-  useEffect(function(){
-      function callback(e){
-        if(e.code === "Escape"){
-          onCloseMovie();
-          console.log(closed);
-        }
-       }
-     document.addEventListener('keydown',callback)
-       return function(){
-         document.removeEventListener('keydown',callback);
-       };
-  },[onCloseMovie]);
+  // useEffect(function(){
+  //     function callback(e){
+  //       if(e.code === "Escape"){
+  //         onCloseMovie();
+  //         console.log(closed);
+  //       }
+  //      }
+  //    document.addEventListener('keydown',callback)
+  //      return function(){
+  //        document.removeEventListener('keydown',callback);
+  //      };
+  // },[onCloseMovie]);
 
-
+useKey("Escape",onCloseMovie);
 
   useEffect(
     function () {
@@ -80,6 +88,7 @@ export default function MovieDetails({
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRatingDecisions: countRef.current
     };
     onMovieWatched(newWatchedMovie);
     onCloseMovie();
@@ -96,7 +105,7 @@ export default function MovieDetails({
             </button>
 
             <div className="detail-header">
-              <img src={poster} alt="" />
+              <img src={poster!="N/A" ? poster : defaultImageUrl} />
               <section>
                 <div className="details-overview">
                   <h2>{title}</h2>
