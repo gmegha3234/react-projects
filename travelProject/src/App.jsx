@@ -1,0 +1,23 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import Homepage from './pages/Homepage'
+import Product from "./pages/Product";
+import Pricing from "./pages/Pricing";
+import AppLayout from "./pages/AppLayout";
+import PageNotFound from "./pages/PageNotFound"
+function App() {
+   return <BrowserRouter>
+   <Routes>
+       <Route path="/" element={<Homepage />}></Route>
+       <Route path="product" element={<Product />}></Route>
+       <Route path="pricing" element={<Pricing />}></Route>
+       <Route path="app" element={<AppLayout />}></Route>
+       <Route path="*" element={<PageNotFound />}></Route>
+   </Routes>
+   </BrowserRouter>
+}
+
+export default App
