@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 20px;
+  align-items: center;
+  gap: 10px;
+}
+.header p {
+  font-size: 18px;
+}
+.btn {
+  width: 120px;
+  padding: 10px;
+  background-color: rgb(215, 215, 17);
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px gray;
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  font-size: 17px;
+}
+button:focus {
+  outline: none;
+}
+.header input {
+  width: 180px;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1 px solid yellow;
+  border: 3px solid rgb(215, 215, 17);
+}
+
+.add-form-container {
+  width: 90%;
+  margin: 2px auto;
+  padding: 1 rem;
+  padding: 1rem;
+  background: #dbdbc9;
+  border-radius: 4px;
+}
+.add-form-container form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.add-form-container form input {
+  width: 200px;
+  padding: 10px;
+  font-size: 15px;
+  border: 3px solid rgb(215, 215, 17);
+  border-radius: 5px;
+  width: 90%;
+}
+.add-form-container .post-body {
+  flex-grow: 2;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: auto;
+  row-gap: 10px;
+  column-gap: 30px;
+  justify-content: center;
+  width: 90%;
+}
+.posts .list-box {
+  border: 2px solid rgb(215, 215, 17);
+  list-style: none;
+  padding: 1rem;
+}
+.posts .list-box:hover{
+  background-color: rgb(160, 160, 89);
+  color: white;
+}
+@media only screen and (max-width: 1050px) {
+  .posts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .posts {
+    grid-template-columns: 1fr;
+  }
+}
