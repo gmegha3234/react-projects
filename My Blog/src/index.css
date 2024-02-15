@@ -10,9 +10,11 @@ body {
 .app {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
   gap: 2rem;
 }
-.main{
+.main {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -87,21 +89,66 @@ button:focus {
   justify-content: center;
   width: 90%;
 }
+
+.posts::-webkit-scrollbar-track {
+  background-color: none;
+  width: 5px;
+}
+
+.posts::-webkit-scrollbar-button {
+  background-color: red;
+  width: 5px;
+  border-radius: 8px;
+}
+
 .posts .list-box {
-  border: 2px solid rgb(215, 215, 17);
+  border: 1px dashed black;
   list-style: none;
   padding: 1rem;
+  transition: all ease 0.5s;
+  border-radius: 10px;
 }
-.posts .list-box:hover{
-  background-color: rgb(160, 160, 89);
-  color: white;
+.posts .list-box:hover {
+  background-color: rgb(232, 232, 62);
 }
 @media only screen and (max-width: 1050px) {
   .posts {
     grid-template-columns: 1fr 1fr;
   }
 }
-
+footer {
+  text-align: center;
+  padding-bottom: 10px;
+  bottom: 0%;
+  left: 48%;
+  margin-top: 20px;
+}
+.archive-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.archive-container ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  /* align-items: start */
+}
+.archive-container ul li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+.archive-container ul li button {
+  width: 200px;
+  font-size: 14px;
+}
 @media only screen and (max-width: 600px) {
   .header {
     flex-direction: column;
@@ -109,5 +156,17 @@ button:focus {
 
   .posts {
     grid-template-columns: 1fr;
+    overflow-y: auto;
+    max-height: 500px;
+  }
+  .archive-container ul {
+    overflow-y: auto;
+    height: 300px;
+
+    font-size: 15px;
+    padding: 20px;
+  }
+  .archive-container button {
+    width: 20px;
   }
 }

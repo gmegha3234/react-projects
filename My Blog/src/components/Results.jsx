@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { usePosts } from "./PostContext";
 
 export default function Results() {
-  return <p>🚀 31 atomic posts found</p>;
+  const { posts } = usePosts();
+  return <p>🚀 {posts.length} atomic posts found</p>;
 }

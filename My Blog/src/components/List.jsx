@@ -1,7 +1,12 @@
 import React from 'react'
 
-export default function List() {
+export default function List({post}) {
   return (
-    <div>List</div>
-  )
+    <li className="list-box">
+      <h3>{post.title}</h3>
+      <p>
+        {post.body}
+      </p>
+    </li>
+  );
 }

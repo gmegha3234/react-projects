@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -11,27 +11,28 @@ import Posts from "./components/Posts";
 import List from "./components/List";
 import Archive from "./components/Archive";
 import Footer from "./components/Footer";
+import { PostProvider, usePosts } from "./components/PostContext";
+
 function App() {
-  // const [posts, setPosts] = useState(
-  //   () =>
-  //     // Array.from({ length: 30 }, () => createRandomPost())
-  //     Arra
-  // );
+
+  
   return (
-    <div className="app">
-      <Header>
-        <Results />
-        <SearchPosts />
-      </Header>
-      <Main>
-        <FormAddPost />
-        <Posts>
-          <List></List>
-        </Posts>
-      </Main>
-      <Archive></Archive>
-      <Footer></Footer>
-    </div>
+    //2 Provide value to child components
+    <PostProvider>
+      {" "}
+      <div className="app">
+        <Header>
+          <Results />
+          <SearchPosts />
+        </Header>
+        <Main>
+          <FormAddPost />
+          <Posts></Posts>
+        </Main>
+        <Archive></Archive>
+        <Footer></Footer>
+      </div>
+    </PostProvider>
   );
 }
 
