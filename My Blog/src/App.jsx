@@ -19,7 +19,7 @@ function App() {
   return (
     //2 Provide value to child components
     <PostProvider>
-      {" "}
+      
       <div className="app">
         <Header>
           <Results />
