@@ -6,8 +6,8 @@ const initialState={balance: 0, loan:0,status: false,loanStatus:false};
 function reducer(state,action){
     if(!state.status && action.type !== "open") return state;
     switch(action.type){
-      case "open":
-        return {...state,balance:state.balance+action.payload,status:true}
+      case "changeDropdown":
+        return {...state,:state.balance+action.payload,status:true}
       case "deposit":
         return {...state, balance: state.balance + action.payload};
       case "withdraw":
