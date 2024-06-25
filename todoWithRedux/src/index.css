@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family: "Shadows Into Light", cursive;
+  font-style: normal;
+}
+
+body{
+  max-height: 100vh;
+  background-color: rgb(179, 119, 66);
+}
+ 
+h1{
+  color: white;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 600;
+  font-size: 44px;
+}
+.search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:10px;
+}
+.search > input{
+  width: 50%;
+  height: 42px;
+  border-radius: 9px;
+  border: none;
+  color: rgba(142, 91, 45, 0.99);
+  font-size: 20px;
+  border: 5px solid rgba(142, 91, 45, 0.99);
+  text-indent: 30px;
+  font-weight: bolder;
+  outline: none;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.addTask{
+    width: 53px;
+    border-radius: 50%;
+    font-size: 38px;
+    height: 51px;
+    font-weight: 800;
+    border: 6px solid #381b1057;
+    background: #11101052;
+    font-family: fangsong;
+    color: #2c0f04;
+    cursor: pointer;
+}
